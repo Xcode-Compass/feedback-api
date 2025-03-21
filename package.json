@@ -1,12 +1,12 @@
 {
   "name": "feedback-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Xcode by Compass UOL",
   "license": "ISC",
   "description": "",
   "dependencies": {
