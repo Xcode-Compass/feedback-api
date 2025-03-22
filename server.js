@@ -1,16 +1,21 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-require('./config/database'); // Conectar ao MongoDB
-const feedbackRoutes = require('./routes/feedbackRoutes');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import './config/database.js';
+import feedbackRoutes from './routes/feedbackRoutes.js'; 
 
+dotenv.config();
+
+const PORT = process.env.PORT || 3000;
 const app = express();
+
+// Middlewares
 app.use(express.json());
 app.use(cors());
 
-app.use('/feedbacks', feedbackRoutes);
+// Define routes for the feedback API.
+app.use('/api/v1', feedbackRoutes);
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

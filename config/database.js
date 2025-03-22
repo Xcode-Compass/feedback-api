@@ -1,9 +1,12 @@
-// config/database.js
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
-mongoose.connect(process.env.MONGO_URI)
+const MONGO_URI = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI_PROD : process.env.MONGO_URI_DEV;
+
+// Attempt to connect to the MongoDB database.
+mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB conectado!'))
   .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
 
-module.exports = mongoose;
+export default mongoose;
