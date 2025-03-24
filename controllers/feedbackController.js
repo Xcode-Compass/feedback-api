@@ -1,4 +1,5 @@
-import { getAllFeedbacks, saveFeedback } from '../services/feedbackService.js';
+import { getAllFeedbacks, saveFeedback, editFeedback, removeFeedback } from '../services/feedbackService.js';
+import mongoose from 'mongoose';
 
 // getFeedbacks: Retrieves all feedbacks from the database returned in the response.
 export const getFeedbacks = async (req, res) => {
@@ -17,7 +18,7 @@ export const getFeedbacks = async (req, res) => {
             data: { feedbacks }
         });
     } catch (error) {
-        res.status(500).json({error: error.message});
+        res.status(500).json({ error: error.message });
     }
 };
 
@@ -30,6 +31,51 @@ export const createFeedback = async (req, res) => {
             data: { feedback }
         })   
     } catch (error) {
-        res.status(500).json({error: error.message});
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// updateFeedback: Updates a feedback by its ID and returns the updated feedback.
+export const updateFeedback = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!mongoose.Types.ObjectId.isValid(id)){
+           return res.status(400).json({ message: "ID inválido" });
+        }
+
+        const feedback = await editFeedback(id, req.body);
+
+        if(!feedback){
+            return res.status(404).json({ message: "Feedback não encontrado" })
+        }
+
+        res.status(200).json({
+            message: "Feedback atualizado com sucesso",
+            data: { feedback } 
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+};
+
+// deleteFeedback: Deletes a feedback by its ID and responds with status 204 (No Content).
+export const deleteFeedback = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!mongoose.Types.ObjectId.isValid(id)){
+           return res.status(400).json({ message: "ID inválido" });
+        }
+
+        const feedback = await removeFeedback(id);
+
+        if(!feedback){
+            return res.status(404).json({ message: "Feedback não encontrado" })
+        }
+
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ error: error.message });        
     }
 };

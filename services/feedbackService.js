@@ -10,3 +10,13 @@ export const saveFeedback = async (feedbackData) => {
     const feedback = new Feedback(feedbackData);
     return await feedback.save();
 }
+
+// Update a feedback by id.
+export const editFeedback = async (id, feedbackNewData) => {
+    return Feedback.findByIdAndUpdate(id, feedbackNewData, { new: true });
+}
+
+// Delete a feedback by id.
+export const removeFeedback = async (id) => {
+    return Feedback.findByIdAndDelete(id);
+}
