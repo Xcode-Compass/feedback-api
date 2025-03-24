@@ -69,6 +69,8 @@ export const deleteFeedback = async (req, res) => {
         }
 
         const feedback = await removeFeedback(id);
+        return res.status(404).json({ message: "Feedback excluído com sucesso" });
+
 
         if(!feedback){
             return res.status(404).json({ message: "Feedback não encontrado" })
