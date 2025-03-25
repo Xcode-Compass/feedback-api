@@ -1,5 +1,29 @@
-import { getAllFeedbacks, saveFeedback, editFeedback, removeFeedback } from '../services/feedbackService.js';
+import { getAllFeedbacks, saveFeedback, editFeedback, removeFeedback, getFeedbackById } from '../services/feedbackService.js';
 import mongoose from 'mongoose';
+
+// Get a feedback by ID
+export const getFeedback = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "ID inválido" });
+        }
+
+        const feedback = await getFeedbackById(id);
+
+        if (!feedback) {
+            return res.status(404).json({ message: "Feedback não encontrado" });
+        }
+
+        res.status(200).json({
+            message: "Feedback encontrado com sucesso",
+            data: { feedback }
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 // getFeedbacks: Retrieves all feedbacks from the database returned in the response.
 export const getFeedbacks = async (req, res) => {
