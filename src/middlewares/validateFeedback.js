@@ -2,6 +2,7 @@
 export const validateFeedback = (req, res, next) => {
     const { squad, name, studyContent, blockers, needHelp, generalFeed } = req.body;
     
+    const SQUADS = ['Squad1', 'Squad2', 'Squad3', 'Squad4', 'Squad5'];
     const errors = [];
 
     const isUpdate = req.method === 'PUT'; 
@@ -9,6 +10,10 @@ export const validateFeedback = (req, res, next) => {
     if (!isUpdate) {
         if (!squad || !name || !studyContent) {
             errors.push("Os campos 'squad', 'name' e 'studyContent' são obrigatórios.");
+        }
+
+        if(!SQUADS.includes(squad)){
+            errors.push("O campo 'squad' deve ter uma Squad válida.")
         }
     }
 

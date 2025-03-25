@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import './config/database.js';
-import feedbackRoutes from './routes/feedbackRoutes.js'; 
+import './src/config/database.js';
+import feedbackRoutes from './src/routes/feedbackRoutes.js'; 
 
 dotenv.config();
 
