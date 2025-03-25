@@ -4,6 +4,10 @@ import Feedback from "../models/Feedback.js";
 export const getAllFeedbacks = async () => {
     return await Feedback.find();
 }
+// Fetch a feedback by id.
+export const getFeedbackById = async (id) => {
+    return await Feedback.findById(id).populate('squad');
+};
 
 // Save a new feedback to the database.
 export const saveFeedback = async (feedbackData) => {
@@ -20,3 +24,5 @@ export const editFeedback = async (id, feedbackNewData) => {
 export const removeFeedback = async (id) => {
     return Feedback.findByIdAndDelete(id);
 }
+
+
