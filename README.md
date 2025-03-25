@@ -14,28 +14,30 @@ API RESTful desenvolvida com **Node.js**, **Express.js** e **MongoDB** para regi
 ```
 feedback-api/
 │
-├── config/
-│   ├── database.js       # Configuração do MongoDB
-│
-├── controllers/
-│   ├── feedbackController.js  # Lógica para manipular os dados do feedback (CRUD)
-│
-├── middlewares/
-│   ├── validateFeedback.js  # Validação dos dados da requisição
-│
-├── models/
-│   ├── Feedback.js      # Definição do modelo Feedback para o Mongoose
-│
-├── services/
-│   ├── feedbackService.js    # Lógica de negócios para o feedback
-│
-├── routes/
-│   ├── feedbackRoutes.js   # Definição das rotas de feedback
+├── src/
+│   ├── config/
+│   │   ├── database.js       # Configuração do MongoDB
+│   │
+│   ├── controllers/
+│   │   ├── feedbackController.js  # Lógica para manipular os dados do feedback (CRUD)
+│   │
+│   ├── middlewares/
+│   │   ├── validateFeedback.js  # Validação dos dados da requisição
+│   │
+│   ├── models/
+│   │   ├── Feedback.js      # Definição do modelo Feedback para o Mongoose
+│   │
+│   ├── services/
+│   │   ├── feedbackService.js    # Lógica de negócios para o feedback
+│   │
+│   ├── routes/
+│   │   ├── feedbackRoutes.js   # Definição das rotas de feedback
 │
 ├── .env                 # Variáveis de ambiente
 ├── .gitignore           # Arquivos e pastas ignorados pelo Git
 ├── package.json         # Dependências e configurações do projeto
 ├── server.js            # Arquivo principal que inicia o servidor e importa as configurações
+
 ```
 ---
 
